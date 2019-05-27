@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_EvalLayout.cshtml";
+    Page.Title = "Evaluation Saved";
+    var db = Database.Open("omesEvals");
+
+    var evalID = Request.QueryString["evalID"];
+    var startDate = Request.Form["startDate"];
+    var endDate = Request.Form["endDate"];
+    var reason = Request.Form["reason"];
+    var agency = Request.Form["agency"];
+    var supervisor = Request.Form["supervisor"];
+    var unitDivision = Request.Form["unitDivision"];
+    var jobCode = Request.Form["jobCode"];
+
+    var evalQuery = "UPDATE Evaluation SET StartDate = @0, EndDate = @1, Reason = @2, Agency = @3, EvaluationSupervisor = @4, OrgUnitDivision = @5, JobCode = @6 WHERE EvalID = @7";
+    db.Execute(evalQuery, startDate, endDate, reason, agency, supervisor, unitDivision, jobCode, evalID);
+}
+<div class="alert alert-success" role="alert">
+    <strong>Evaluation Saved.</strong>
+</div>

@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "Evaluation Completed";
+    var db = Database.Open("omesEvals");
+
+    var evalId = Request.QueryString["evalID"];
+    var completeQuery = "UPDATE Evaluation SET isComplete = @0 WHERE EvalID = @1";
+    db.Execute(completeQuery, true, evalId);
+}
+<div class="alert alert-success" role="alert">
+    <strong>Evaluation Completed.</strong>
+</div>

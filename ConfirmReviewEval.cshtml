@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "_ReviewEvalLayout.cshtml";
+    Page.Title = "Evaluation Saved";
+    var db = Database.Open("omesEvals");
+
+    var evalId = Request.QueryString["evalID"];
+}
+<div class="alert alert-success" role="alert">
+    <strong>Continue Evaluation.</strong>
+</div>

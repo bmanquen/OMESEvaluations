@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Page.Title</title>
+    <link rel="stylesheet" href=@Href("~/Shared/bootstrap/bootstrap.min.css") />
+    <link rel="stylesheet" href=@Href("~/Shared/main.css") />
+</head>
+<body>
+    @{
+        var db = Database.Open("omesEvals");
+        var templateId = Request.QueryString["id"];
+        var navQuery = "SELECT * FROM Section WHERE TemplateID = @0";
+    }
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <a class="navbar-brand" href="home"><div class="homeLink"><img class="logo-nav" src="https://omes.ok.gov/sites/g/files/gmc316/f/OMES_logofullcolor.png" /></div></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive" style="position:relative; right: 5%;">
+            <ul class="navbar-nav ml-auto">
+                @foreach (var row in db.Query(navQuery, templateId))
+                {
+                    var sectionId = row.SectionID;
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="EditSection?id=@templateId&secID=@sectionId">@row.SectionText</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="EditSection?id=@templateId&secID=@sectionId">Edit @row.SectionText</a>
+                            @{
+                                foreach (var item in db.Query("SELECT * FROM Item WHERE SectionID =" + sectionId))
+                                {
+                                    <a class="dropdown-item" href="EditItem?id=@templateId&secID=@sectionId&itemID=@item.ItemID">@item.ItemTitle</a>
+                                }
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <script src=@Href("~/Scripts/jquery/jquery.min.js")></script>
+    <script src=@Href("~/Scripts/bootstrap/bootstrap.min.js")></script>
+    <script src=@Href("~/Shared/main.js")></script>
+</body>
+</html>

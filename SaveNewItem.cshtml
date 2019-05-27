@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "_TemplateLayout.cshtml";
+    Page.Title = "New Item Saved";
+    var db = Database.Open("omesEvals");
+    var templateId = Request.QueryString["id"];
+    var sectionId = Request.Form["selSection"];
+    var itemName = Request.Form["itemName"];
+    var itemDescription = Request.Form["itemDesc"];
+
+    var newItemQuery = "INSERT INTO Item (ItemTitle, Description, SectionID) VALUES (@0,@1,@2)";
+    db.Execute(newItemQuery, itemName, itemDescription, sectionId);
+}
+<div class="alert alert-success" role="alert">
+    <strong>New Item Created.</strong>
+</div>
+<nav class="saveNav">
+    <a class="btn btn-outline-dark btn-block btn-lg dashBtn" href="newSection?id=@templateId&secId=@sectionId">New Section</a>
+    <a class="btn btn-outline-dark btn-block btn-lg dashBtn" href="newItem?id=@templateId&secId=@sectionId">New Item</a>
+</nav>

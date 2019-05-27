@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "New Item";
+    var db = Database.Open("omesEvals");
+    var itemId = Request.QueryString["itemID"];
+    var itemQuery = "SELECT * FROM Item WHERE ItemID = @0";
+    var row = db.QuerySingle(itemQuery, itemId);
+    var templateIdQuery = "SELECT TemplateID FROM Section WHERE SectionID = @0";
+    var templateID = db.Query(templateIdQuery, row.SectionID);
+}
+
+<form class="form itemForm" method="post" action="SaveNewItem?id=@templateID">
+    <div class="form-group">
+        <label for="itemName">Item Name:</label>
+        <input type="text" name="itemName" id="itemName" class="form-control" value="@row.ItemTitle" />
+    </div>
+    <div class="form-group">
+        <label for="itemDesc">Item Description:</label>
+        <textarea name="itemDesc" class="form-control" id="itemDesc" rows="5" style="vertical-align:text-top">@row.Description</textarea>
+    </div>
+    <button type="submit" class="btn btn-default fromBtns">Submit</button>
+</form>

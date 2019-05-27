@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_EditTemplateLayout.cshtml";
+    Page.Title = "Item Saved";
+    var db = Database.Open("omesEvals");
+    var templateId = Request.QueryString["id"];
+    var sectionId = Request.QueryString["secID"];
+    var itemId = Request.QueryString["itemID"];
+    var itemName = Request.Form["itemName"];
+    var itemDescription = Request.Form["itemDesc"];
+
+    var editItemQuery = "UPDATE Item SET ItemTitle = @0, Description = @1, SectionID = @2 WHERE ItemID = @3";
+    db.Execute(editItemQuery, itemName, itemDescription, sectionId, itemId);
+}
+<div class="alert alert-success" role="alert">
+    <strong>Item Edited.</strong>
+</div>

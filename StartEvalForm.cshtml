@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "Evaluation Start Form";
+    var db = Database.Open("omesEvals");
+    var evalID = Request.QueryString["evalID"];
+}
+<h3 class="formHeader">Evaluation Start Form</h3>
+<form class="form itemForm" method="post" action="EvalSaved?evalID=@evalID">
+    <div class="form-group row">
+        <div class="col-6">
+            <label for="startDate">Start Date</label>
+            <input required class="form-control" type="date" value="" name="startDate" id="startDate" />
+        </div>
+        <div class="col-6">
+            <label for="endDate">End Date</label>
+            <input required class="form-control" type="date" value="" name="endDate" id="endDate" />
+        </div>
+    </div> 
+    <div class="form-group">
+        <label for="reason">Reason</label>
+        <input required class="form-control" type="text" value="" name="reason" id="reason" />
+    </div>
+    <div class="form-group">
+        <label for="agency">Agency</label>
+        <input required class="form-control" type="text" value="" name="agency" id="agency" />
+    </div>
+    <div class="form-group">
+        <label for="supervisor">Evaluation Supervisor</label>
+        <input required class="form-control" type="text" value="" name="supervisor" id="supervisor" />
+    </div>
+    <div class="form-group">
+        <label for="unitDivision">Org Unit Division</label>
+        <input required class="form-control" type="text" value="" name="unitDivision" id="unitDivision"/>
+    </div>
+    <div class="form-group">
+        <label for="jobCode">Job Code</label>
+        <input required class="form-control" type="number" value="" name="jobCode" id="jobCode" />
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>

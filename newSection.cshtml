@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "_TemplateLayout.cshtml";
+    Page.Title = "New Section"; 
+    var db = Database.Open("omesEvals");
+    var templateId = Request.QueryString["id"];
+}
+<h3 class="formHeader">New Section</h3>
+<form class="form itemForm" method="post" action="SaveNewSection?id=@templateId">
+    <div class="form-group">
+        <label for="sectionName">Section Name:</label>
+        <input type="text" name="sectionName" id="sectionName" class="form-control" value="" />
+    </div>
+    
+    <button type="submit" class="btn btn-default formBtns">Submit</button>
+</form>

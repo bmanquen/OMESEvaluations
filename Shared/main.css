@@ -1,0 +1,148 @@
+﻿html, body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0% 0%;
+}
+.pageTitle{
+    text-align: center;
+}
+.dashBtn{
+    margin: 5% 0%;
+}
+.homeNav a{
+    padding: 3%;
+}
+.evalForm form{
+    width: 50%;
+    margin: auto;
+    position: relative;
+    top: 10%;
+    padding: 5%;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.formBtns{
+    float: right;
+}
+.PEdropdown {
+    position: relative;
+    top: 10%;
+}
+#peBorder {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 3%;
+    margin: auto;
+}
+.pastEvalDropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid black;
+    z-index: 1;
+}
+.pastEvalDropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.pastEvalDropdown-content a:hover{
+    background-color: #f1f1f1;
+}
+.show{
+    display: block;
+}
+.searchIcon{
+    position:relative;
+}
+.searchIcon input{
+    padding-left: 2.4rem;
+    width: 100%;
+}
+.searchIcon i{
+    position:absolute;
+    z-index: 2;
+    display: block;
+    height: 100%;
+    width: 2.4rem;
+    line-height: 2.4rem;
+    text-align: center;
+    pointer-events:none;
+    color: grey;
+    font-size: 1.5rem;
+    top: 10%;
+}
+.templateManager{
+    position: relative;
+    top: 10%;
+}
+.templateManager a{
+    padding: 3%;
+    margin: 5%;
+}
+.logo-img{
+    display: block;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo-nav{
+    display: block;
+    width: 60%;
+    float: left;
+}
+.navbar-brand{
+    width: 15%;
+}
+.newTemplateForm{
+    display: block;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 80%;
+    left: 10%;
+    top: 20%;
+}
+.newTemplateForm div{
+    left: 30%;
+}
+#newTempTitle{
+    text-align: center;
+}
+section div{
+    margin: 2%;
+}
+.sectionB{
+    position: relative;
+    top: 30%;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.itemForm {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 5%;
+    margin: auto;
+    width: 60%;
+}
+.formHeader {
+    text-align:center; 
+    position: relative;
+}
+.saveNav {
+    width: 80%;
+    margin: auto;
+}
+.saveNav a {
+    padding: 3%;
+}
+.alert{
+    text-align:center;
+}

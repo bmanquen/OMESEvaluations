@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "Review or Continue Evaluation";
+    var db = Database.Open("omesEvals");
+
+    var employeeId = Request.Form["employee"];
+}
+<nav class="saveNav">
+    <a class="btn btn-outline-dark btn-block btn-lg dashBtn" href="ContinuePastEval?empID=@employeeId">Continue Past Evaluation</a>
+    <a class="btn btn-outline-dark btn-block btn-lg dashBtn" href="ReviewPastEval?empID=@employeeId">Review Past Evaluation</a>
+</nav>

@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "New Template";
+    var db = Database.Open("omesEvals");
+}
+    <h3 class="formHeader">New Template</h3>
+    <form class="form itemForm" method="post" action="SaveNewTemplate">
+        
+        <div class="form-group">
+            <label for="templateName">Template Name:</label>
+            <input type="text" name="templateName" id="templateName" class="form-control" value="@Request.Form["templateName"]" />
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+

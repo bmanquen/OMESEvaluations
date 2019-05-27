@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "Review or Continue Evaluation";
+    var db = Database.Open("omesEvals");
+
+    var employeeId = Request.QueryString["empID"];
+    var evalQuery = "SELECT * FROM Evaluation WHERE EmployeeID = @0 AND isComplete = @1";
+}
+<h3 class="formHeader">Review Evaluation</h3>
+<form class="form itemForm" method="post" action="ReviewEval">
+<div class="form-group">
+    <label for="evaluations">Evaluation</label>
+    <select class="form-control" name="evaluations">
+        <option></option>
+        @foreach (var row in db.Query(evalQuery, employeeId, true))
+        {
+            <option value="@row.EvalID">@employeeId @row.StartDate @row.EndDate @row.Reason Completed: @row.isComplete</option>
+        }
+    </select>
+</div>
+<button type="submit" class="btn btn-default formBtns">Submit</button>
+</form>

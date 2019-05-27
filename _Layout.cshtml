@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Page.Title</title>
+    <link rel="stylesheet" href=@Href("~/Shared/bootstrap/bootstrap.min.css") />
+    <link rel="stylesheet" href=@Href("~/Shared/main.css") />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <a class="navbar-brand" href="home"><div class="homeLink"><img class="logo-nav" src="https://omes.ok.gov/sites/g/files/gmc316/f/OMES_logofullcolor.png" /></div></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="EvaluateEmployee">Evaluate Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="PastEvaluations">Past Evaluations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="TemplateManager">Template Manager</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br />
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer class="text-center">
+        <p>&copy; 2019 - OMES Evaluations</p>
+    </footer>
+    <script src=@Href("~/Scripts/jquery/jquery.min.js")></script>
+    <script src=@Href("~/Scripts/bootstrap/bootstrap.min.js")></script>
+    <script src=@Href("~/Shared/main.js")></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "Template Chosen";
+    var templateId = Request.Form["template"];
+    var db = Database.Open("omesEvals");
+}
+<div class="alert alert-success" role="alert">
+    <strong>Template Chosen.</strong>
+</div>
+<nav class="saveNav">
+    <a class="btn btn-outline-dark btn-block btn-lg dashBtn" href="EditTemplate?id=@templateId">Edit Template</a>
+</nav>

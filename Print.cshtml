@@ -1,0 +1,46 @@
+﻿@{
+    Page.Title = "Print";
+    var db = Database.Open("omesEvals");
+    var evalID = Request.QueryString["evalID"];
+
+    var evalQuery = "SELECT * FROM Evaluation WHERE EvalID = @0";
+    var eval = db.QuerySingle(evalQuery, evalID);
+
+    var employeeQuery = "SELECT * FROM Employee WHERE EmployeeID = @0";
+    var employee = db.QuerySingle(employeeQuery, eval.EmployeeID);
+
+    var sectionQuery = "SELECT * FROM EvalSection WHERE EvalID = @0";
+    var itemQuery = "SELECT * FROM EvalItem WHERE EvalSectionID = @0";
+
+    var designationQuery = "SELECT * FROM Designation WHERE DesignationID = @0";
+    var ratingQuery = "SELECT * FROM Rating WHERE RatingID = @0";
+}
+<h1>@employee.FirstName @employee.LastName</h1>
+<h3>@eval.StartDate @eval.EndDate</h3>
+<h5>Employee ID: </h5><p>@employee.EmployeeID</p>
+<h5>Job Title: </h5><p>@employee.JobTitle</p>
+<h5>Employee Supervisor: </h5><p>@employee.EmployeeSupervisor</p>
+<h5>Reason: </h5><p>@eval.Reason</p>
+<h5>Agency: </h5><p>@eval.Agency</p>
+<h5>Evaluation Supervisor: </h5><p>@eval.EvaluationSupervisor</p>
+<h5>Organization Unit Division: </h5><p>@eval.OrgUnitDivision</p>
+<h5>Job Code: </h5><p>@eval.JobCode</p>
+@foreach (var row in db.Query(sectionQuery,evalID))
+{
+    <h3>@row.SectionText</h3>
+    foreach(var item in db.Query(itemQuery, row.EvalSectionID))
+    {
+        <h5>@item.ItemTitle</h5>
+        <p>@item.Description</p>
+        foreach(var des in db.Query(designationQuery, item.DesignationID))
+        {
+            <p>Designation: @des.DesignationText</p>
+        }
+        foreach(var rating in db.Query(ratingQuery, item.RatingID))
+        {
+            <p>Rating: @rating.RatingText</p>
+        }
+        <p>Comments: @item.Comments</p>
+    }
+    <br /><br />
+}

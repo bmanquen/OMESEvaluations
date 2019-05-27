@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "New Template Saved";
+    var db = Database.Open("omesEvals");
+    var templateName = Request.Form["templateName"];
+    var newTemplateQuery = "INSERT INTO Template (TemplateName) VALUES (@0)";
+    db.Execute(newTemplateQuery, templateName);
+    var templateId = (int)db.GetLastInsertId();
+}
+    <div class="alert alert-success" role="alert">
+        <strong>New Template Created.</strong>
+    </div>
+ <nav class="saveNav">
+    <a class="btn btn-outline-dark btn-block btn-lg dashBtn" href="newSection?id=@templateId">New Section</a>
+</nav>

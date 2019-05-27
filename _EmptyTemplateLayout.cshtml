@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Page.Title</title>
+    <link rel="stylesheet" href=@Href("~/Shared/bootstrap/bootstrap.min.css") />
+    <link rel="stylesheet" href=@Href("~/Shared/main.css") />
+</head>
+<body>
+    @{
+        var db = Database.Open("omesEvals");
+        var navQuery = "SELECT * FROM Section WHERE TemplateID = @0)";
+
+    }
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <a class="navbar-brand" href="home"><div class="homeLink"><img class="logo-nav" src="https://omes.ok.gov/sites/g/files/gmc316/f/OMES_logofullcolor.png" /></div></a>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <script src=@Href("~/Scripts/jquery/jquery.min.js")></script>
+    <script src=@Href("~/Scripts/bootstrap/bootstrap.min.js")></script>
+    <script src=@Href("~/Shared/main.js")></script>
+</body>
+</html>

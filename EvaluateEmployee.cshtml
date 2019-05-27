@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+    Page.Title = "Evaluate Employee";
+    var db = Database.Open("omesEvals");
+    var EmpQuery = "SELECT * FROM Employee";
+    var TemplateQuery = "SELECT * FROM Template";
+}
+<h3 class="formHeader">Evaluate Employee</h3>
+<form class="form itemForm" action="StartEval" method="post">
+    <div class="form-group">
+        <label for="selTemplate">Select Template:</label>
+        <select class="form-control" name="selTemplate" id="selTemplate">
+            <option disabled selected value=""></option>
+            @foreach (var row in db.Query(TemplateQuery))
+            {
+                <option value="@row.TemplateID">@row.TemplateName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="selEmployee">Employee Name:</label>
+        <select class="form-control" name="selEmployee" id="selEmployee">
+            <option disabled selected value=""></option>
+            @foreach (var row in db.Query(EmpQuery))
+            {
+                <option value="@row.EmployeeID">@row.FirstName @row.LastName @row.JobTitle</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default formBtns">Submit</button>
+</form>

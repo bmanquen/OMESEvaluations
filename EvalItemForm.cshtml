@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "_EvalLayout.cshtml";
+    Page.Title = "Item Form";
+    var db = Database.Open("omesEvals");
+    var itemId = Request.QueryString["itemID"];
+    var secId = Request.QueryString["secID"];
+    var evalId = Request.QueryString["evalID"];
+
+    var sectionQuery = "SELECT * FROM EvalSection WHERE EvalSectionID = @0";
+    var evalSection = db.QuerySingle(sectionQuery, secId);
+
+    var itemQuery = "SELECT * FROM EvalItem WHERE EvalItemID = @0";
+    var item = db.QuerySingle(itemQuery, itemId);
+
+    var designationQuery = "SELECT * FROM Designation";
+    var ratingQuery = "SELECT * FROM Rating";
+}
+<h3 class="formHeader">@evalSection.SectionText</h3>
+<form class="form itemForm" method="post" action="SaveEvalItemForm?evalID=@evalId&itemID=@itemId">
+    <h5>@item.ItemTitle</h5>
+    <p>@item.Description</p>
+    <div class="form-group">
+        <label for="designation">Designation</label>
+        <select required class="form-control" name="designation">
+            <option></option>
+            @foreach (var row in db.Query(designationQuery))
+            {
+                var selected = "";
+                if(row.DesignationID == item.DesignationID)
+                {
+                    selected = " selected";
+                }
+                <option value="@row.DesignationID"@selected>@row.DesignationText</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating</label>
+        <select required class="form-control" name="rating">
+            <option></option>
+            @foreach (var row in db.Query(ratingQuery))
+            {
+                var selected = "";
+                if(row.RatingID == item.RatingID)
+                {
+                    selected = " selected";
+                }
+                <option value="@row.RatingID"@selected>@row.RatingText</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="comments">Comments</label>
+        <textarea name="comments" class="form-control" rows="5" style="vertical-align:text-top" value="@Request.Form["comments"]">@item.Comments</textarea>
+    </div>
+    <button type="submit" class="btn btn-default formBtns">Submit</button>
+</form>
+

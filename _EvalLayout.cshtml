@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Page.Title</title>
+    <link rel="stylesheet" href=@Href("~/Shared/bootstrap/bootstrap.min.css") />
+    <link rel="stylesheet" href=@Href("~/Shared/main.css") />
+</head>
+<body>
+    @{
+        var db = Database.Open("omesEvals");
+        var evalID = Request.QueryString["evalID"];
+        var navQuery = "SELECT * FROM EvalSection WHERE EvalID = @0";
+    }
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <a class="navbar-brand" href="home"><div class="homeLink"><img class="logo-nav" src="https://omes.ok.gov/sites/g/files/gmc316/f/OMES_logofullcolor.png" /></div></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="CompleteEval?evalID=@evalID">Complete Evaluation</a>
+                </li>
+                @foreach (var row in db.Query(navQuery, evalID))
+                {
+                    var sectionId = row.EvalSectionID;
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@row.SectionText</a>
+                        <div class="dropdown-menu">
+                            @{
+                                foreach (var item in db.Query("SELECT * FROM EvalItem WHERE EvalSectionID =" + sectionId))
+                                {
+                                    <a class="dropdown-item" href="EvalItemForm?evalID=@evalID&itemID=@item.EvalItemID&secID=@sectionId">@item.ItemTitle</a>
+                                }
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <script src=@Href("~/Scripts/jquery/jquery.min.js")></script>
+    <script src=@Href("~/Scripts/bootstrap/bootstrap.min.js")></script>
+    <script src=@Href("~/Shared/main.js")></script>
+</body>
+</html>

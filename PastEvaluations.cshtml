@@ -1,0 +1,21 @@
+﻿@{ 
+    Layout = "_Layout.cshtml";
+    Page.Title = "Past Evaluations";
+    var db = Database.Open("omesEvals");
+
+    var employeeQuery = "SELECT * FROM Employee";
+}
+<h3 class="formHeader">Past Evaluations</h3>
+<form class="form itemForm" method="post" action="ReviewOrContinueEval">
+    <div class="form-group">
+        <label for="employee">Employee</label>
+        <select class="form-control" name="employee" id="employee">
+            <option></option>
+            @foreach (var row in db.Query(employeeQuery))
+            {
+                <option value="@row.EmployeeID">@row.FirstName @row.LastName</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default formBtns">Submit</button>
+</form>

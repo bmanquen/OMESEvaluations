@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "_TemplateLayout.cshtml";
+    Page.Title = "New Item";
+    var db = Database.Open("omesEvals");
+    var templateId = Request.QueryString["id"];
+    var sectionsQuery = "SELECT * FROM Section WHERE TemplateID = @0";
+}
+<h3 class="formHeader">New Item</h3>
+<form class="form itemForm" method="post" action="SaveNewItem?id=@templateId">
+    <div class="form-group">
+        <label for="selSection">Section:</label>
+        <select class="form-control" name="selSection" id="selSection">
+            <option></option>
+            @foreach (var row in db.Query(sectionsQuery, templateId))
+            {
+                <option value="@row.SectionID">@row.SectionText</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="itemName">Item Name:</label>
+        <input type="text" name="itemName" id="itemName" class="form-control" value="@Request.Form["itemName"]"/>
+    </div>
+    <div class="form-group">
+        <label for="itemDesc">Item Description:</label>
+        <textarea name="itemDesc" class="form-control" id="itemDesc" rows="5" style="vertical-align:text-top" value="@Request.Form["itemDesc"]"></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-default formBtns">Submit</button>
+</form>

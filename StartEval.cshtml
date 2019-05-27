@@ -1,0 +1,26 @@
+﻿@{ 
+    Layout = "_EmptyTemplateLayout.cshtml";
+    Page.Title = "Start Evaluation";
+    var db = Database.Open("omesEvals");
+    var employeeId = Request.Form["selEmployee"];
+    var templateId = Request.Form["selTemplate"];
+
+    var getTemplate = "INSERT INTO Evaluation (EmployeeID,TemplateID, isComplete) VALUES (@0,@1,@2)";
+    db.Execute(getTemplate, employeeId, templateId, false);
+    var evalId = db.GetLastInsertId();
+
+    var sectionQuery = "SELECT * FROM Section WHERE TemplateID = @0";
+    foreach(var row in db.Query(sectionQuery, templateId))
+    {
+        var evalSectionQuery = "INSERT INTO EvalSection (EvalID, SectionText) VALUES (@0, @1)";
+        db.Execute(evalSectionQuery, evalId, row.SectionText);
+
+        var evalSectionId = db.GetLastInsertId();
+
+        var evalItemQuery = "INSERT INTO EvalItem (ItemTitle, Description, EvalSectionID) select ItemTitle, Description, @0 as ESID from Item where SectionId=@1";
+        db.Execute(evalItemQuery, evalSectionId, row.SectionID);
+    }
+}
+<nav class="saveNav">
+    <a class="btn btn-outline-dark btn-block btn-lg dashBtn" href="StartEvalForm?evalID=@evalId">Start Evaluation</a>
+</nav>

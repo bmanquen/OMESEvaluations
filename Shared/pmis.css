@@ -1,0 +1,188 @@
+﻿body {
+}
+/* pmis styling */
+
+.ui-widget-content a {
+    color: #0000EE;
+}
+
+.list-group.list-group-root {
+    padding: 0;
+    overflow: hidden;
+}
+
+    .list-group.list-group-root .list-group {
+        margin-bottom: 0;
+    }
+
+    .list-group.list-group-root .list-group-item {
+        border-radius: 0;
+        border-width: 1px 0 0 0;
+    }
+
+    .list-group.list-group-root > .list-group-item:first-child {
+        border-top-width: 0;
+    }
+
+    .list-group.list-group-root > .list-group > .list-group-item {
+        padding-left: 30px;
+    }
+
+    .list-group.list-group-root > .list-group > .list-group > .list-group-item {
+        padding-left: 45px;
+    }
+
+.gantt-table, .gantt-row, .gantt-cell {
+    width: 100%;
+    height: 100%;
+}
+
+    .gantt-table .gantt-cell {
+        padding: 0;
+    }
+
+.gantt-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.gantt-available {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: yellow;
+}
+
+.gantt-planned {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: green;
+    color: #fff;
+}
+
+.gantt-today {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: yellow;
+}
+
+.gantt-actual {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: blue;
+    color: #fff;
+}
+
+.gantt-earned {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: red;
+    color: #fff;
+}
+
+.gantt-estimated {
+    z-index: 5;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background: purple;
+}
+
+.gantt-available-key {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: yellow;
+}
+
+.gantt-planned-key {
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: green;
+}
+
+.gantt-actual-key {
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: blue;
+}
+
+.gantt-earned-key {
+    z-index: 4;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: red;
+}
+
+.gantt-estimated-key {
+    z-index: 5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: purple;
+}
+
+.pmis-btn-msg-received {
+    background-color: #D3D3D3;
+}
+
+.pmis-btn-msg-sent {
+    background-color: #0072C6;
+    color: #ffffff;
+}
+
+.pmis-project-name {
+    color: #ffffff;
+}
+
+.pmis-list-button {
+    background-color: #0275d8;
+    color: #fff;
+}
+
+.pmis-detail-page-new-link {
+    display: inline-block;
+    vertical-align: baseline;
+    /* ie 7*/
+    *display: inline;
+    *zoom: 1;
+    *text-align: right;
+}
+
+.pmis-detail-page-heading {
+    text-align: justify;
+    /* IE special */
+    width: 100%;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+}
+
+    .pmis-detail-page-heading:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+        height: 0;
+        font-size: 0;
+        line-height: 0;
+    }
+
+.pmis-detail-page-title {
+    display: inline-block;
+    margin-top: 0.321em;
+    /* ie 7*/
+    *display: inline;
+    *zoom: 1;
+    *text-align: left;
+}

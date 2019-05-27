@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "_EvalLayout.cshtml";
+    Page.Title = "Save Item Form";
+    var db = Database.Open("omesEvals");
+
+    var itemId = Request.QueryString["itemID"];
+
+    var designationId = Request.Form["designation"];
+    var ratingId = Request.Form["rating"];
+    var comments = Request.Form["comments"];
+
+    var updateEvalItem = "UPDATE EvalItem SET DesignationID = @0, RatingID = @1, Comments = @2 WHERE EvalItemID = @3";
+    db.Execute(updateEvalItem, designationId, ratingId, comments, itemId);
+}
+<div class="alert alert-success" role="alert">
+    <strong>Item Saved.</strong>
+</div>

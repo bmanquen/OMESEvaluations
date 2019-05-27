@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "_EditTemplateLayout.cshtml";
+    Page.Title = "Section Saved";
+    var db = Database.Open("omesEvals");
+    var templateId = Request.QueryString["id"];
+    var sectionId = Request.QueryString["secID"];
+    var sectionTitle = Request.Form["sectionName"];
+
+    var editSectionQuery = "UPDATE Section SET SectionText = @0 WHERE SectionID = @1";
+    db.Execute(editSectionQuery, sectionTitle, sectionId);
+}
+<div class="alert alert-success" role="alert">
+    <strong>Section Edited.</strong>
+</div>
